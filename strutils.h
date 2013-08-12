@@ -1,7 +1,7 @@
 #ifndef __LIBDS_STRUTILS_H__
 #define __LIBDS_STRUTILS_H__
 
-#include <stdio.h>
+#include <stdlib.h>
 
 __BEGIN_DECLS
 
@@ -30,8 +30,6 @@ void buffer_nwrite(stringbuf * buf, char * str, int n);
 void realloc_if_needed(stringbuf * buf);
 /* free the buffer and its internal string */
 void destroy_buffer(stringbuf * buf);
-/* safely read the entire contents of the file into a properly sized string */
-char * saferead(FILE * f);
 /* join an array of strings of length len with separator sep */
 char* str_join(char **args, char * sep, int len);
 /* split the string into a vector around the delimiter string */
