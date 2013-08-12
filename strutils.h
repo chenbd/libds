@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+__BEGIN_DECLS
+
 typedef struct {
 	char * str;
 	int length;
@@ -46,6 +48,9 @@ void str_upper(char * str);
 int str_startswith(char * stra, char * strb);
 /* tests whether stra ends with the string strb */
 int str_endswith(char * stra, char * strb);
+
+__END_DECLS
+
 #endif /* __STRUTILS_H__ */
 
 

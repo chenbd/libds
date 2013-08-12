@@ -1,8 +1,12 @@
 #ifndef __LIBDS_LIST_H__
 #define __LIBDS_LIST_H__
 
+#include <stdlib.h>
+
 /* A C implementation of a doubly-linked list. Contains void pointer values.
    Can be used as a LIFO stack of FIFO queue. */
+
+__BEGIN_DECLS
 
 #define FRONT 0
 #define BACK 1
@@ -74,6 +78,8 @@ void* list_next(list_iter_p list);
    stored there. */
 void* list_prev(list_iter_p list);
 
+__END_DECLS
+
 #endif
 #ifndef __LIBDS_VECTOR_H__
 #define __LIBDS_VECTOR_H__
@@ -81,6 +87,8 @@ void* list_prev(list_iter_p list);
 /* A C implementation of a vector, or dynamically expanding array. */
 
 #include <stdlib.h>
+
+__BEGIN_DECLS
 
 #define BASE_CAP 10
 #define EXPAND_RATIO 1.5
@@ -123,6 +131,7 @@ void destroy_vector(vector_p vec);
 /* Swaps the pointers at indices i and j in the vector */
 void vector_swap(vector_p vec, int i, int j);
 
+__END_DECLS
 
 #endif
 #ifndef __LIBDS_HASHMAP_H__
@@ -133,14 +142,14 @@ void vector_swap(vector_p vec, int i, int j);
 
 #include <stdlib.h>
 
-#include <time.h>
 
-#define NUM_BUCKETS 3848921
+__BEGIN_DECLS
+
+#define DEFAULT_NUM_BUCKETS 101
 
 struct item{
 	char* key;
 	void* val;
-	time_t expiry;
 	struct item * next;
 };
 
@@ -148,9 +157,10 @@ typedef struct item item_t;
 
 struct hashmap{
 	item_t** buckets;
-	size_t size;
 	vector_p keys;
 	void (*destructor)(void*);
+	size_t size;
+	size_t num_buckets;
 };
 
 typedef struct hashmap * hashmap_p;
@@ -178,11 +188,17 @@ size_t hash_func(char * key);
 /* Free all of the memory associated with hashmap m */
 void destroy_hashmap(hashmap_p m);
 
+void hashmap_resize(hashmap_p m, size_t num_buckets);
+
+__END_DECLS
+
 #endif
 #ifndef __LIBDS_STRUTILS_H__
 #define __LIBDS_STRUTILS_H__
 
 #include <stdio.h>
+
+__BEGIN_DECLS
 
 typedef struct {
 	char * str;
@@ -227,6 +243,9 @@ void str_upper(char * str);
 int str_startswith(char * stra, char * strb);
 /* tests whether stra ends with the string strb */
 int str_endswith(char * stra, char * strb);
+
+__END_DECLS
+
 #endif /* __STRUTILS_H__ */
 
 
@@ -234,6 +253,8 @@ int str_endswith(char * stra, char * strb);
 #define __LIBDS_HEAP_H__
 
 
+
+__BEGIN_DECLS
 
 #define PARENT(i) (i-1)/2
 #define LEFT(i) 2*i+1
@@ -268,12 +289,16 @@ void heap_remove(heap_p hp);
 /* inserts the value into the heap such that the heap property is maintained */
 void heap_insert(heap_p hp, void * val, int size);
 
+__END_DECLS
+
 #endif /* __HEAP_H__ */
 
 #ifndef __LIBDS_TREE_H__
 #define __LIBDS_TREE_H__
 
 #include <stdlib.h>
+
+__BEGIN_DECLS
 
 enum {
 	RED,
@@ -322,5 +347,7 @@ void destroy_node(tnode_p node);
 int rb_color(tnode_p node);
 tnode_p rb_insert(tree_p tr, void * data, int size);
 void rb_delete(tree_p tr, tnode_p node);
+
+__END_DECLS
 
 #endif

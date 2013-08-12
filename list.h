@@ -1,8 +1,12 @@
 #ifndef __LIBDS_LIST_H__
 #define __LIBDS_LIST_H__
 
+#include <stdlib.h>
+
 /* A C implementation of a doubly-linked list. Contains void pointer values.
    Can be used as a LIFO stack of FIFO queue. */
+
+__BEGIN_DECLS
 
 #define FRONT 0
 #define BACK 1
@@ -73,5 +77,7 @@ void* list_next(list_iter_p list);
 /* Advances the iterator to the previous item in the list and returns the data 
    stored there. */
 void* list_prev(list_iter_p list);
+
+__END_DECLS
 
 #endif

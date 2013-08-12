@@ -3,6 +3,8 @@
 
 #include "vector.h"
 
+__BEGIN_DECLS
+
 #define PARENT(i) (i-1)/2
 #define LEFT(i) 2*i+1
 #define RIGHT(i) 2*i+2
@@ -35,6 +37,8 @@ void build_heap(heap_p hp);
 void heap_remove(heap_p hp);
 /* inserts the value into the heap such that the heap property is maintained */
 void heap_insert(heap_p hp, void * val, int size);
+
+__END_DECLS
 
 #endif /* __HEAP_H__ */
 

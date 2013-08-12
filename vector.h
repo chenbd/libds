@@ -5,6 +5,8 @@
 
 #include <stdlib.h>
 
+__BEGIN_DECLS
+
 #define BASE_CAP 10
 #define EXPAND_RATIO 1.5
 
@@ -46,5 +48,6 @@ void destroy_vector(vector_p vec);
 /* Swaps the pointers at indices i and j in the vector */
 void vector_swap(vector_p vec, int i, int j);
 
+__END_DECLS
 
 #endif

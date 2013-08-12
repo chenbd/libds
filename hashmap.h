@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include "vector.h"
 
+__BEGIN_DECLS
+
 #define DEFAULT_NUM_BUCKETS 101
 
 struct item{
@@ -51,5 +53,7 @@ size_t hash_func(char * key);
 void destroy_hashmap(hashmap_p m);
 
 void hashmap_resize(hashmap_p m, size_t num_buckets);
+
+__END_DECLS
 
 #endif

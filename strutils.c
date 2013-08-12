@@ -10,8 +10,9 @@ char * saferead(FILE * f){
 	len = ftell(f);
 	fseek(f, 0, SEEK_SET);
 	buf = (char*)malloc(sizeof(char)*(len+1));
-	fread(buf, sizeof(char), len, f);
-	buf[len] = '\0';
+	if (len == fread(buf, sizeof(char), len, f)) {
+	    buf[len] = '\0';
+	} else memset(buf, 0x00, sizeof(char)*(len+1));
 	return buf;
 }
 
